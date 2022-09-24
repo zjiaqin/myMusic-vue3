@@ -1,16 +1,23 @@
 <template>
-  <el-dialog v-model="loginDialogVisible" @closed="closeDialog(loginFormRef)">
+  <el-dialog
+    width="30%"
+    center
+    v-model="loginDialogVisible"
+    @closed="closeDialog(loginFormRef)"
+  >
     <div class="login-wrapper">
-      <img src="@/assets/img/logo.jpg" alt="" class="logn-logo" />
+      <h2>Welcome</h2>
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules">
-        <el-form-item label="" prop="phone" label-width="30%">
+        <el-form-item label="" prop="phone">
           <el-input
+            :prefix-icon="Iphone"
             v-model="loginForm.phone"
             placeholder="请输入网易音乐手机号登录"
           />
         </el-form-item>
-        <el-form-item label="" prop="password" label-width="30%">
+        <el-form-item label="" prop="password">
           <el-input
+            :prefix-icon="Key"
             type="password"
             show-password
             v-model="loginForm.password"
@@ -19,17 +26,16 @@
         </el-form-item>
       </el-form>
     </div>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button type="primary" @click="submitForm(loginFormRef)">
-          登录
-        </el-button>
-      </span>
-    </template>
+    <span class="dialog-footer">
+      <el-button bg plain type="info" @click="submitForm(loginFormRef)">
+        登录
+      </el-button>
+    </span>
   </el-dialog>
 </template>
 
 <script setup>
+import { Iphone, Key } from '@element-plus/icons-vue'
 import { login, getUserInfo } from '@/api'
 import { useStore } from 'vuex'
 import { reactive, ref, computed } from 'vue'
@@ -104,4 +110,25 @@ const getUserDetailedInfo = async (uid) => {
 }
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.login-wrapper {
+  h2 {
+    height: 40px;
+    text-align: center;
+  }
+  .el-input {
+    margin: 0 30px;
+  }
+  .el-button {
+    width: 100%;
+  }
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+}
+:deep(.el-button .el-button--info .is-plain .is-has-bg) {
+  width: 100px;
+}
+</style>
