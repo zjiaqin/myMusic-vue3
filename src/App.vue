@@ -11,8 +11,9 @@
         <!-- 一级路由 -->
         <router-view></router-view>
       </el-main>
+      <PlayBar />
     </el-container>
-    <PlayBar />
+
     <Login />
   </el-container>
 </template>

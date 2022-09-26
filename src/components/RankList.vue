@@ -41,7 +41,7 @@
         </div>
         <div class="songoperate">
           <el-tooltip effect="dark" content="添加到列表" placement="top-end">
-            <i class="iconfont icon-add"></i>
+            <i class="iconfont icon-add" @click="addSongList(item)"></i>
           </el-tooltip>
           <el-tooltip effect="dark" content="添加到收藏" placement="top-end">
             <i class="iconfont icon-fav"></i>
@@ -55,6 +55,8 @@
 <script setup>
 import { topRankList } from '@/api/home.js'
 import { ref, onMounted, getCurrentInstance } from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
 const { proxy } = getCurrentInstance()
 
 const props = defineProps({
@@ -76,6 +78,10 @@ const getTopRankList = async () => {
     res.playlist.tracks.slice(0, 6),
     res.privileges.slice(0, 6)
   )
+}
+
+const addSongList = (song) => {
+  store.dispatch('player/addList', [song])
 }
 onMounted(() => {
   getTopRankList()

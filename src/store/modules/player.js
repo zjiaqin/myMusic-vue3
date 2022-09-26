@@ -1,3 +1,12 @@
+import util from '../../utils/util'
+const conactPlayList = (addList, playList) => {
+  return util.concatPlayList(
+    addList.filter((item) => {
+      return !item.vip && !item.license
+    }),
+    playList
+  )
+}
 export default {
   namespaced: true,
   state() {
@@ -12,7 +21,21 @@ export default {
   mutations: {
     setLoginDialog(state, val) {
       state.loginDialogVisible = val
+    },
+    set_playStatus(state, val) {
+      state.isPlayed = val
+    },
+    set_palyIndex(state, val) {
+      state.playIndex = val
+    },
+    set_playList(state, val) {
+      state.playList = val
     }
   },
-  actions: {}
+  actions: {
+    addList({ commit, state }, list) {
+      const newList = conactPlayList(list, state.playList)
+      commit('set_playList', newList)
+    }
+  }
 }

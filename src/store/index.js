@@ -16,7 +16,7 @@ const store = createStore({
       // 名称
       key: 'myMusicStore',
       // 持久化的模块
-      paths: ['user']
+      paths: ['user', 'player.playList']
     })
   ]
 })
