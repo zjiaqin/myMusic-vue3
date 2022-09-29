@@ -130,9 +130,6 @@ const { mv_area, mv_list, mv_index, mv_loading, chooseMvType } = new_mv()
 </script>
 
 <style lang="less" scoped>
-.home {
-  padding-bottom: 30px;
-}
 .h_title {
   padding: 30px 0 10px;
   h3 {

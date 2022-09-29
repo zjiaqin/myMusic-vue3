@@ -2,8 +2,8 @@
   <div
     :class="['play-bar', lockName]"
     v-if="curSongInfo"
-    @mouseenter="enterBar($event)"
-    @mouseleave="leaveBar($event)"
+    @mouseenter="enterBar()"
+    @mouseleave="leaveBar()"
   >
     <!-- 固定播放栏按钮 -->
     <div class="fold">
@@ -154,31 +154,31 @@
             <!-- 播放列表弹出框 -->
             <el-popover
               placement="top"
-              :width="550"
+              :width="500"
               trigger="click"
               @hide="popverClose"
             >
               <template #reference>
-                <el-tooltip
-                  class="box-item"
-                  effect="dark"
-                  content="播放列表"
-                  placement="top"
-                >
-                  <div class="playlist" @click="popverHandle">
+                <div class="playlist" @click="popverHandle">
+                  <el-tooltip
+                    class="box-item"
+                    effect="dark"
+                    content="播放列表"
+                    placement="top"
+                  >
                     <i class="iconfont icon-playsong" title="播放列表"></i>
-                    <div class="playlist-num">
-                      {{ 99 > playList.length ? playList.length : '99+' }}
-                    </div>
+                  </el-tooltip>
+                  <div class="playlist-num">
+                    {{ 99 > playList.length ? playList.length : '99+' }}
                   </div>
-                </el-tooltip>
+                </div>
               </template>
               <div class="playlist-container">
                 <h3 class="playlist-header">
-                  <span>
-                    播放列表
-                    <em>(共{{ playList.length }}首)</em>
-                  </span>
+                  <div>
+                    <span>播放列表</span>
+                    <span class="num">(共{{ playList.length }}首)</span>
+                  </div>
                   <div class="delSonglist" @click="clearSonglist">
                     <i class="iconfont icon-del"></i>
                     清空列表
@@ -274,10 +274,10 @@ const playIcon = computed(() => {
 const mutedIcon = computed(() => {
   return isMuted.value ? 'icon-volume-active' : 'icon-volume'
 })
-const timer = null //定时器，用于延时隐藏播放栏
+const timer = ref(null) //定时器，用于延时隐藏播放栏
 
 onBeforeUnmount(() => {
-  clearTimeout(timer)
+  clearTimeout(timer.value)
 }) //组件销毁时，需要清除定时器。！！！
 
 /*** 获取从vuex中获取播放列表及当前播放音乐等状态*/
@@ -330,32 +330,35 @@ const changeBarType = () => {
   emit('changeBarType', 'MiniBar')
 }
 
+// 鼠标进入及离开播放栏
+const enterBar = () => {
+  clearTimeout(timer.value)
+  lockName.value = 'active'
+}
+const leaveBar = () => {
+  if (!isLock.value && !locked.value) {
+    clearTimeout(timer.value)
+    timer.value = setTimeout(() => {
+      lockName.value = isLock.value ? 'active' : ''
+    }, 3000)
+  }
+}
 // 点击锁定按钮锁定播放栏
 const lockBar = () => {
   locked.value = !locked.value
   isLock.value = locked.value
   leaveBar()
 }
-// 鼠标进入及离开播放栏
-const enterBar = () => {
-  clearTimeout(timer)
-  isLock.value = true
-  lockName.value = 'active'
-}
-const leaveBar = () => {
-  if (!isLock.value) {
-    clearTimeout(timer)
-    timer = setTimeout(() => {
-      lockName.value = ''
-    }, 3000)
-  }
-}
+
 // 点击具有弹出框的图标事件
 const popverHandle = () => {
   isLock.value = true
 }
 // 弹框关闭 触发的事件
-const popverClose = () => [(isLock.value = false)]
+const popverClose = () => {
+  isLock.value = false
+  leaveBar()
+}
 
 // 清空播放列表
 const clearSonglist = () => {
@@ -383,6 +386,11 @@ provide('isChange ', isChange)
   width: 100%;
   background: #fff;
   height: 70px;
+  transition: all 0.4s ease-out;
+  transform: translateY(100%);
+  &.active {
+    transform: translateY(0);
+  }
   .fold {
     position: absolute;
     top: -40px;
@@ -514,20 +522,55 @@ provide('isChange ', isChange)
           }
         }
         .lyric-btn {
+          line-height: 70px;
           margin: 0 18px;
           font-size: 18px;
           color: var(--color-text);
+          cursor: pointer;
         }
         .playlist {
+          line-height: 70px;
           position: relative;
           margin-right: 18px;
           .playlist-num {
             position: absolute;
-            top: -4px;
+            top: -8px;
             right: -5px;
             color: var(--color-text);
           }
         }
+      }
+    }
+  }
+}
+.lyrics-container {
+  height: 430px;
+  background: #fff;
+  overflow: hidden;
+
+  .lyrics-header {
+    padding: 0 0 24px;
+    line-height: 16px;
+    font-size: 16px;
+  }
+}
+.playlist-container {
+  .playlist-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 0 24px;
+    font-size: 16px;
+    font-weight: 700;
+    .num {
+      margin-left: 18px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+    .delSonglist {
+      font-size: 14px;
+      font-weight: 400;
+      &:hover {
+        font-weight: 700;
       }
     }
   }

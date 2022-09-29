@@ -130,7 +130,7 @@ const loopSong = () => {
 // 更新音频时间的方法，调用方法触发事件可将当前时间传给父组件  ?考虑增加方法的适用性，无需传值，直接从myAudi.value获取当前时间
 const updateSongTime = (e) => {
   if (!initAudioReady.value || isChange.value) return
-
+  store.commit('player/set_currentTime', e.target.currentTime)
   emit('setCurrentTime', e.target.currentTime)
 }
 

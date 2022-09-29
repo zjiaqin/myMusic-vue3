@@ -63,4 +63,23 @@ export const topArtists = (data) => {
   return request('/top/artists', 'get', data)
 }
 
-// const topArtists = ({ limit = 30, offset = 0 }) => { return api.get(`/top/artists?limit=${limit}&offset=${offset}`, {}) }
+// 歌词
+
+export const lyrics = (id) => {
+  return request('/lyric', 'get', { id })
+}
+
+// 获取音乐详细信息
+export const songDetail = (ids) => {
+  return request('/song/detail?', 'get', { timestamp: 0, ids })
+}
+
+// 获取相似音乐
+export const simiSong = ({ id = '' }) => {
+  return request(`/simi/song?id=${id}`, 'get', {})
+}
+
+// 包含这首歌的歌单
+export const simiPlayList = ({ id = '' }) => {
+  return request(`/simi/playlist?id=${id}`, 'get', {})
+}
