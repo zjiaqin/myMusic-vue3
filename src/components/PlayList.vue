@@ -1,5 +1,5 @@
 <template>
-  <el-skeleton :loading="loading" animated :count="6">
+  <el-skeleton :loading="loading" animated :count="num">
     <template #template>
       <div class="item">
         <el-skeleton-item variant="image" class="skeleton-img" />
@@ -71,7 +71,8 @@
 <script setup>
 const props = defineProps({
   playList: Array,
-  loading: Boolean
+  loading: Boolean,
+  num: Number
 })
 </script>
 
@@ -79,10 +80,12 @@ const props = defineProps({
 @w: calc((@mainWidth - 240px - 20px - 20px) / 6);
 .el-skeleton {
   display: flex;
+  flex-wrap: wrap;
 
   .item {
-    flex: 1;
+    flex: 16.6%;
     height: 100%;
+    max-width: calc((100% - 240px) / 6);
     padding: 20px 40px 20px 0;
 
     .skeleton-img {
@@ -113,11 +116,11 @@ const props = defineProps({
 }
 .playlist {
   display: flex;
+  flex-wrap: wrap;
   .item {
-    width: 100%;
     height: 100%;
-    flex: 1;
-
+    flex: 16.6%;
+    max-width: calc((100% - 240px) / 6);
     padding: 20px 40px 20px 0;
 
     .faceImg {

@@ -80,7 +80,10 @@
                   <div class="simi-info">
                     <router-link
                       class="simi-name"
-                      :to="{ path: '/song', query: { id: simiItem.id } }"
+                      :to="{
+                        path: '/song',
+                        query: { id: simiItem.id }
+                      }"
                     >
                       {{ simiItem.name }}
                     </router-link>
@@ -310,7 +313,7 @@ onMounted(() => {
 })
 // 路由变化从新获取id，并初始化数据
 onBeforeRouteUpdate((to) => {
-  sID = to.query.id
+  sID.value = to.query.id
   init()
 })
 </script>

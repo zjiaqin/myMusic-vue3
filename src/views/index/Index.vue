@@ -20,6 +20,7 @@
             <play-list
               :playList="playlist_list"
               :loading="playlist_loading"
+              :num="6"
             ></play-list>
           </div>
         </div>
