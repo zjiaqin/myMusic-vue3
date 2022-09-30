@@ -1,6 +1,6 @@
 <template>
   <div class="mv-list">
-    <el-skeleton :loading="loading" animated :count="12" :throttle="500">
+    <el-skeleton :loading="loading" animated :count="num" :throttle="500">
       <template #template>
         <div class="item">
           <el-skeleton-item variant="image" class="skeleton-image" />
@@ -31,7 +31,7 @@
               :to="{ path: '/mvlist/mv', query: { id: item.id } }"
             >
               <i class="iconfont icon-video-play"></i>
-              <el-image class="image" :src="item.cover">
+              <el-image class="image" :src="item.cover" :fit="cover">
                 <template #placeholder>
                   <div class="image-slot">
                     <el-icon><i-ep-picture /></el-icon>
@@ -73,7 +73,8 @@
 <script setup>
 const props = defineProps({
   loading: Boolean,
-  mvList: Array
+  mvList: Array,
+  num: Number
 })
 </script>
 
@@ -84,8 +85,9 @@ const props = defineProps({
   flex-wrap: wrap;
   padding-bottom: 20px;
   .item {
-    flex: 25%;
+    flex: 16.6%;
     margin: 20px 20px 0 0;
+
     max-width: calc((100% - 100px) / 6);
     &:nth-child(6n) {
       margin-right: 0;
@@ -110,7 +112,7 @@ const props = defineProps({
   .item {
     display: flex;
     flex-direction: column;
-    flex: 25%;
+    flex: 16.6%;
     max-width: calc((100% - 100px) / 6);
 
     margin: 20px 20px 0 0;
@@ -118,6 +120,7 @@ const props = defineProps({
       margin-right: 0;
     }
     .faceImg {
+      border-radius: 4px;
       position: relative;
       display: block;
       .calcHeight(@w,1920,1079 );
@@ -136,8 +139,9 @@ const props = defineProps({
         transition: all 0.5s ease-out;
       }
       .image {
-        .calcHeight(@w,1920,1079 );
+        // .calcHeight(@w,1920,1079 );
         transition: all 0.5s ease-out;
+        // border-radius: 4px;
         .image-slot {
           display: flex;
           justify-content: center;

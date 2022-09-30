@@ -72,7 +72,7 @@
       >
         <play-list
           :playList="playlist_list"
-          :loading="playlist_loading"
+          :loading="sk_loading"
           :num="24"
         ></play-list>
         <!-- <p v-if="playlist_loading">Loading...</p> -->
@@ -97,6 +97,7 @@ const curType = ref('全部歌单')
 
 const playlist_list = ref([]) //歌单列表
 const playlist_loading = ref(true) //歌单加载状态
+const sk_loading = ref(true) //骨架屏加载状态
 const noMore = ref(false) //没有更多数据了
 const disabled = computed(() => {
   return playlist_loading.value || noMore.value
@@ -141,6 +142,7 @@ const getPlayList = async (params) => {
   // 当加载的数据小于总数，才可以继续触发获取事件
   noMore.value = playlist_list.value >= res.total
   playlist_loading.value = false
+  sk_loading.value = false
 }
 // 下拉加载更多歌单列表数据
 const loadMore = () => {
@@ -149,6 +151,7 @@ const loadMore = () => {
 
 // 选择方式
 const selectOrder = (order) => {
+  sk_loading.value = true
   params.offset = 0
   router.push({
     path: 'playlist',
@@ -160,6 +163,7 @@ const selectOrder = (order) => {
 }
 // 选择类型
 const selectType = (sub) => {
+  sk_loading.value = true
   curType.value = sub.name
   if (sub.name) {
     router.push({
@@ -173,6 +177,7 @@ const selectType = (sub) => {
 }
 // 点击关闭页面
 const closed = () => {
+  sk_loading.value = true
   router.push({
     path: 'playlist',
     query: {

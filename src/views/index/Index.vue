@@ -67,7 +67,11 @@
             </span>
           </div>
           <div class="wrapper">
-            <mv-list :loading="mv_loading" :mvList="mv_list"></mv-list>
+            <mv-list
+              :loading="mv_loading"
+              :mvList="mv_list"
+              :num="12"
+            ></mv-list>
           </div>
         </div>
       </div>

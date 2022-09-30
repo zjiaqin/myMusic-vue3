@@ -9,46 +9,70 @@
         }}）
       </div>
     </div>
-    <div class="toplist_wrapper">
-      <div class="songitem" v-for="item in topSongsList" :key="item.id">
-        <el-image :src="item.album.picUrl + '?param=120y120'" class="songimage">
-          <template #placeholder>
-            <div class="image-slot">
-              <el-icon>
-                <i-ep-picture />
-              </el-icon>
-            </div>
-          </template>
-        </el-image>
-
-        <div class="songinfo">
-          <router-link
-            :to="{ path: '/song', query: { id: item.id } }"
-            class="song_title"
-          >
-            {{ item.name }}
-          </router-link>
-          <div class="song_author">
-            <router-link
-              class="singer"
-              v-for="(author, index) in item.singer"
-              :key="index"
-              :to="{ path: '/singer', query: { id: author.id } }"
-            >
-              {{ index !== 0 ? '/' + author.name : author.name }}
-            </router-link>
+    <el-skeleton :loading="loading" animated :count="6">
+      <template #template>
+        <div class="item">
+          <el-skeleton-item variant="image" class="image" />
+          <div class="text">
+            <el-skeleton-item variant="text" style="width: 60%" />
+            <el-skeleton-item variant="text" style="width: 30%" />
           </div>
         </div>
-        <div class="songoperate">
-          <el-tooltip effect="dark" content="添加到列表" placement="top-end">
-            <i class="iconfont icon-add" @click="addSongList(item)"></i>
-          </el-tooltip>
-          <el-tooltip effect="dark" content="添加到收藏" placement="top-end">
-            <i class="iconfont icon-fav"></i>
-          </el-tooltip>
+      </template>
+      <template #default>
+        <div class="toplist_wrapper">
+          <div class="songitem" v-for="item in topSongsList" :key="item.id">
+            <el-image
+              :src="item.album.picUrl + '?param=120y120'"
+              class="songimage"
+            >
+              <template #placeholder>
+                <div class="image-slot">
+                  <el-icon>
+                    <i-ep-picture />
+                  </el-icon>
+                </div>
+              </template>
+            </el-image>
+
+            <div class="songinfo">
+              <router-link
+                :to="{ path: '/song', query: { id: item.id } }"
+                class="song_title"
+              >
+                {{ item.name }}
+              </router-link>
+              <div class="song_author">
+                <router-link
+                  class="singer"
+                  v-for="(author, index) in item.singer"
+                  :key="index"
+                  :to="{ path: '/singer', query: { id: author.id } }"
+                >
+                  {{ index !== 0 ? '/' + author.name : author.name }}
+                </router-link>
+              </div>
+            </div>
+            <div class="songoperate">
+              <el-tooltip
+                effect="dark"
+                content="添加到列表"
+                placement="top-end"
+              >
+                <i class="iconfont icon-add" @click="addSongList(item)"></i>
+              </el-tooltip>
+              <el-tooltip
+                effect="dark"
+                content="添加到收藏"
+                placement="top-end"
+              >
+                <i class="iconfont icon-fav"></i>
+              </el-tooltip>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </template>
+    </el-skeleton>
   </div>
 </template>
 
@@ -63,7 +87,8 @@ const props = defineProps({
   title: String,
   updateTime: Number,
   updateText: String,
-  id: Number
+  id: Number,
+  loading: Boolean
 })
 
 const topSongsList = ref([])
@@ -180,6 +205,25 @@ onMounted(() => {
           // transition: all 0.3s ease-in;
         }
       }
+    }
+  }
+}
+.el-skeleton {
+  .item {
+    display: flex;
+    padding-bottom: 25px;
+
+    .image {
+      height: 48px;
+      width: 48px;
+    }
+    .text {
+      padding: 4px 0;
+      margin-left: 18px;
+      flex: 1;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
     }
   }
 }
