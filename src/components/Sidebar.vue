@@ -57,10 +57,6 @@ const menuList = reactive([
   {
     name: '歌手',
     path: 'artist'
-  },
-  {
-    name: '我的音乐',
-    path: 'my'
   }
 ])
 </script>
@@ -79,6 +75,7 @@ const menuList = reactive([
     width: 16px;
     height: 16px;
     border-radius: 50%;
+    opacity: 0.7;
   }
   .red {
     background-color: var(--color-text-height);

@@ -15,7 +15,7 @@
       <p v-if="noMore">No more</p>
     </div>
 
-    <div class="MV-side">
+    <div class="artist-side">
       <el-affix :offset="141">
         <div class="filter-box">
           <div class="rank">
@@ -156,4 +156,39 @@ watchEffect(() => {
 })
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.artist-list {
+  display: flex;
+  .artist-main {
+    flex: 1;
+  }
+  .artist-side {
+    margin-left: 20px;
+    width: 350px;
+
+    .filter-box {
+      box-sizing: border-box;
+      padding: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.2);
+      .title {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 10px;
+      }
+      .filter-main {
+        span {
+          display: inline-block;
+          padding: 5px 10px;
+          cursor: pointer;
+          &.active {
+            background: var(--color-text-height);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+}
+</style>

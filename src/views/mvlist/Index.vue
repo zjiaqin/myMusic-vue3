@@ -165,7 +165,7 @@ watchEffect(() => {
       padding: 20px;
       background: #fff;
       border-radius: 12px;
-      box-shadow: -8px 10px 12px rgba(0, 0, 0, 0.2);
+      box-shadow: -4px 4px 8px rgba(0, 0, 0, 0.2);
 
       .rank,
       .area,

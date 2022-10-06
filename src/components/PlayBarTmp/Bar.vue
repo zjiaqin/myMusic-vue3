@@ -366,7 +366,6 @@ const clearSonglist = () => {
   store.commit('player/set_playList', [])
   store.commit('player/set_palyIndex', 0)
 }
-provide('isChange ', isChange)
 </script>
 
 <style lang="less" scoped>

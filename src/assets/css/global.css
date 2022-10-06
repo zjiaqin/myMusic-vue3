@@ -1,7 +1,7 @@
 :root {
   --color-text-main: #2d2d2d;
   --color-text: #909090;
-  --color-text-height: #ff641e;
+  --color-text-height: #FB7299;
 }
 
 * { padding: 0; margin: 0; }
@@ -36,5 +36,5 @@ ul{
   }
 }
 .el-main{
-  margin-bottom:40px ;
+  padding-bottom:80px ;
 }

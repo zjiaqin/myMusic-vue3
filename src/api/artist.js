@@ -18,3 +18,24 @@ export const artistList = ({
 }) => {
   return request('/artist/list', 'get', { type, area, initial, limit, offset })
 }
+
+/****获取歌手详细信息 */
+// 歌手介绍
+export const artistDesc = ({ id = '' }) => {
+  return request('/artist/desc', 'get', { id })
+}
+
+// 歌手热门歌曲
+export const artists = ({ id = '' }) => {
+  return request('/artists', 'get', { id })
+}
+
+// 获取歌手 mv
+export const artistMv = ({ id = '', limit = 50, offset = 0 }) => {
+  return request('/artist/mv', 'get', { id, limit, offset })
+}
+
+//获取歌手专辑
+export const artistAlbum = ({ id = '', limit = 50, offset = 0 }) => {
+  return request('/artist/album', 'get', { id, limit, offset })
+}

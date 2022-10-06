@@ -77,7 +77,7 @@
         ></play-list>
         <!-- <p v-if="playlist_loading">Loading...</p> -->
         <div class="loading" v-loading="playlist_loading"></div>
-        <p v-if="noMore">No more</p>
+        <p class="noMore" v-if="noMore">没有更多了</p>
       </div>
     </div>
   </div>
@@ -349,5 +349,9 @@ onMounted(() => {
       }
     }
   }
+}
+.noMore {
+  text-align: center;
+  color: var(--color-text);
 }
 </style>

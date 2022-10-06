@@ -116,9 +116,14 @@ const props = defineProps({
     .faceImg{
       display: flex;
       background-color:  #f0f0f0;
+      border-radius: 4px;
       .image{
+        &:deep(img){
+          border-radius: 4px;
+        }
+
          overflow: visible;
-        position: relative;
+         position: relative;
          z-index: 1;
          flex: 120;
          .calcHeight(@w, 324.167, 120);
@@ -179,6 +184,7 @@ const props = defineProps({
         .tag{
           width: 100px;
           background-color: var(--color-text-height);
+          opacity: 0.7;
           position: absolute;
           top: 5px;
           right: -30px;

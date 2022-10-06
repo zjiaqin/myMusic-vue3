@@ -299,7 +299,7 @@ onBeforeRouteUpdate((to) => {
       .detail-info {
         flex: 1;
         height: 210px;
-        margin: 0 20px;
+        margin: 0 0 0 20px;
         padding: 20px;
         display: flex;
         flex-direction: column;
@@ -366,14 +366,18 @@ onBeforeRouteUpdate((to) => {
             font-size: 14px;
           }
           p {
-            margin-top: 14px;
+            margin-top: 10px;
             color: var(--color-text);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
           }
         }
       }
     }
     .detail-list {
-      margin-right: 20px;
       padding: 20px;
 
       .list-head {

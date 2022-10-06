@@ -42,6 +42,7 @@
           :key="item.id"
           :label="item.name"
           :value="item.name"
+          @click="jumpPage(item.id, group.label)"
         >
           {{ item.name }}
           <template v-if="group.label === 'songs'">

@@ -26,7 +26,7 @@
     <template #default>
       <div class="djlist">
         <router-link
-          :to="{ path: '/dj', query: { id: item.id } }"
+          :to="{ path: '/', query: { id: '前方正在施工' } }"
           class="item"
           v-for="item in hotDj_List"
           :key="item.id"

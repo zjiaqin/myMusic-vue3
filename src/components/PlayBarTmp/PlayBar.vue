@@ -75,4 +75,18 @@ provide('currentTime', currentTime)
 provide('isChange', isChange)
 </script>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.fade-bar-enter-active,
+.fade-bar-leave-active,
+.fade-minibar-enter-active,
+.fade-minibar-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-bar-enter-from,
+.fade-bar-leave-to,
+.fade-minibar-enter-from,
+.fade-minibar-leave-to {
+  opacity: 0;
+}
+</style>

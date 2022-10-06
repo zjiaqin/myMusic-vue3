@@ -18,7 +18,7 @@
           class="group"
         >
           <router-link
-            :to="{ path: '/artist', query: { id: item.id } }"
+            :to="{ path: '/singer', query: { id: item.id } }"
             class="item"
             v-for="item in Group"
             :key="item.id"

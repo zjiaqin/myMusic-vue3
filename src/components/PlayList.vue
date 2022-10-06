@@ -41,7 +41,7 @@
             <span class="playCount">
               <i class="iconfont icon-playnum" style="color: #fff" />
               <em>{{ $utils.formartNum(item.playCount) }}</em>
-              / {{ item.trackCount + '首' }}
+              /{{ item.trackCount + '首' }}
             </span>
           </router-link>
           <div class="info">
@@ -176,6 +176,7 @@ const props = defineProps({
         z-index: -1;
         transform: translate(-33%, -50%);
         transition: all 0.4s;
+        opacity: 0.6;
       }
       &:before {
         display: block;
@@ -189,7 +190,7 @@ const props = defineProps({
         left: 50%;
         z-index: -1;
         transform: translate(-19%, -50%);
-        opacity: 0.5;
+        opacity: 0.3;
         transition: all 0.5s;
       }
     }
@@ -222,7 +223,7 @@ const props = defineProps({
       .faceImg {
         &::after,
         &::before {
-          background: #ff960080;
+          background: var(--color-text-height);
         }
         &::after {
           left: 51%;
