@@ -82,9 +82,10 @@ onMounted(() => {
   align-content: space-between;
   flex-wrap: wrap;
   height: 340px;
-
+  width: 100%;
   .image {
-    width: 100px;
+    @w: calc((100% - 20px) / 4);
+    width: @w;
     height: 100px;
   }
 }
@@ -95,8 +96,9 @@ onMounted(() => {
   align-items: center;
   height: 100%;
   .item {
-    width: 100px;
-    height: 100px;
+    @w: calc((100% - 30px) / 4);
+    max-width: @w;
+
     .image-slot {
       display: flex;
       justify-content: center;

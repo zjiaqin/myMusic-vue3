@@ -180,6 +180,10 @@ const props = defineProps({
           padding-left: 40px;
           font-size: 14px;
           color: var(--color-text);
+          word-break: break-all;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
         }
         .tag{
           width: 100px;
