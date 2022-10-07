@@ -185,8 +185,12 @@ const { mv_area, mv_list, mv_index, mv_loading, chooseMvType } = new_mv()
   }
   .artist {
     margin-left: 20px;
-    // width: 440px;
-    flex: 0.6;
+    width: 440px;
+  }
+  @media screen and (max-width: 1200px) {
+    .artist {
+      display: none;
+    }
   }
 }
 </style>

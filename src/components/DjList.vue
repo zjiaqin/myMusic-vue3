@@ -49,7 +49,9 @@
               {{ item.rcmdtext }}
             </div>
             <div class="dj-count">
-              <span>共{{ $utils.formartNum(item.programCount) }}期</span>
+              <span class="left">
+                共{{ $utils.formartNum(item.programCount) }}期
+              </span>
               <span class="right">
                 订阅{{ $utils.formartNum(item.subCount) }}次
               </span>
@@ -166,16 +168,24 @@ onMounted(() => [getHotDjList(hotDj_params)])
         -webkit-line-clamp: 2;
       }
       .dj-count {
+        display: flex;
+        justify-content: space-between;
         color: var(--color-text);
         font-size: 12px;
         margin-bottom: 8px;
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        -webkit-line-clamp: 1;
         .right {
-          margin-left: 10px;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 1;
+        }
+        .left {
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 1;
         }
       }
     }
