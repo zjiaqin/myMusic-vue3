@@ -1,6 +1,7 @@
 import aixos from 'axios'
 
-const baseURL = 'http://localhost:3000/'
+// const baseURL = 'http://localhost:3000/'
+const baseURL = 'https://www.zjia.club/'
 const instance = aixos.create({
   baseURL,
   timeout: 1000 * 60,
