@@ -84,6 +84,7 @@ onMounted(() => {
   height: 340px;
   width: 100%;
   .image {
+    flex: 25%;
     @w: calc((100% - 20px) / 4);
     width: @w;
     height: 100px;
@@ -97,6 +98,7 @@ onMounted(() => {
   height: 100%;
   .item {
     @w: calc((100% - 30px) / 4);
+    flex: 25%;
     max-width: @w;
 
     .image-slot {
