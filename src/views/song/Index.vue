@@ -32,7 +32,10 @@
                     专辑：
                     <router-link
                       class="song-album"
-                      :to="{ path: '/album', query: { id: songInfo.album.id } }"
+                      :to="{
+                        path: '/album',
+                        query: { id: songInfo.album.id }
+                      }"
                     >
                       {{ songInfo.album.name }}
                     </router-link>
@@ -71,7 +74,7 @@
           <div class="song-similar">
             <div class="panel">
               <div class="simi-title">相似歌曲</div>
-              <div class="simi-main">
+              <div class="simi-main" v-if="simiSongInfo">
                 <div
                   class="simi-item"
                   v-for="simiItem in simiSongInfo"
@@ -116,7 +119,10 @@
           <div class="panel">
             <div class="lyric-title">歌词</div>
             <div class="lyric-main">
-              <lyrics :sId="curSongInfo.id" :currentTime="currentTime"></lyrics>
+              <lyrics
+                :sId="sID"
+                :currentTime="curSongInfo.id == sID ? currentTime : 0"
+              ></lyrics>
             </div>
           </div>
         </div>
@@ -141,7 +147,7 @@
       <div class="list-similar">
         <div class="panel">
           <div class="title">包含这首歌的歌单</div>
-          <div class="main-list">
+          <div class="main-list" v-if="simiList">
             <router-link
               class="item"
               :to="{ path: '/playlist/detail', query: { id: item.id } }"
@@ -181,10 +187,10 @@ const route = useRoute()
 const store = useStore()
 const { proxy } = getCurrentInstance()
 // 数据
-const sID = ref(route.query.id) //歌曲ID
+const sID = ref(0) //歌曲ID
 const songInfo = ref(null) //单曲信息
-const simiSongInfo = ref([]) //相似歌曲
-const simiList = ref([]) //相似歌单
+const simiSongInfo = ref(null) //相似歌曲
+const simiList = ref(null) //相似歌单
 
 const cBox = ref(null)
 
