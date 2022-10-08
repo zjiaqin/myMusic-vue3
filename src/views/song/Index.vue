@@ -121,7 +121,7 @@
             <div class="lyric-main">
               <lyrics
                 :sId="sID"
-                :currentTime="curSongInfo.id == sID ? currentTime : 0"
+                :currentTime="curSongInfo?.id == sID ? currentTime : 0"
               ></lyrics>
             </div>
           </div>
